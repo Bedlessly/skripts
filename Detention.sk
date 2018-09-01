@@ -1,0 +1,39 @@
+#- - - - - Page #1 - - - - -
+#
+#		 Skript #1:
+#
+#  Wrote mostly at school!
+#
+#    Made by Majestory
+
+
+command /dd [<player>] :
+	permission: dd.use
+	usage: /dd [<player>]
+	trigger:
+		if {detention} is set:
+			send "&cYour now in Detention!"
+			teleport player to {detention}
+		else if {detenion} is not set:
+			send "&cDetention Location is not set!"
+
+command /detention [<player>] :
+	permission: dd.use
+	usage: /detention [<player>]
+	trigger:
+		if {detention} is set:
+			if player has permission "dd.use":
+				send "&cYour now in Detention!"
+				teleport player to {detention}
+			else if player dosen't have permission "dd.use":
+					send "&cYou have no Permission!"
+			else if {detenion} is not set:
+				if player has permission "dd.use":
+					send "&cDetention Location is not set!"
+				else if player doesn't have permssion "dd.use":
+					send "&cYou have no Permission!"
+
+command /setdd:
+	trigger:
+		set {detention} to player's location
+		send "&aDetention location set!"
