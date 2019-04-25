@@ -1,0 +1,101 @@
+#
+#                  HUGE
+#
+#             No Custom Kits
+# 
+#               Free Space!
+#
+
+options:
+	prefix: &7: &eTorchWars &7:
+
+#Commands
+command /tchelp:
+	permission: tc.help
+	usage: /tchelp
+	trigger:
+		send "&7&m------------------------------------------------------ %nl%&c/tchelp | Get help on how to use this Skript! %nl%&c/tctorch1 | Set Position 1 of Red's Torch! %nl%&c/tctorch2 | Set Position 2 of Blue's Torch! %nl%&c/tcsetlobby | Set where people spawn in / wait until the game starts! %nl%&c/tcsetspawn1 | Set the spawn in point, for Red! %nl%&c/tcsetspawn2 | Set the spawn in point, for Blue! %nl%&7&m-------------------------------------------------------"
+
+command /tctorch1:
+	permission: tc.torch.1
+	usage: /tctorch1
+	trigger:
+		set {game.blue.torch} to location of player
+                      wait 10 ticks
+                      if {game.blue.torch} is set:
+                      	send “%{prefix}% &aSuccessfully set &9Blue’s &atorch!”
+                      else if {game.blue.torch) is not set:
+                      	send “%{prefix}% &cFailed to set &9Blue’s &atorch.”
+
+command /tctorch2:
+	permission: tc.torch.2
+	usage: /tctorch2
+	trigger:
+		set {game.red.torch} to location of player
+                      wait 10 ticks
+                      if {game.red.torch} is set:
+                      	send “%{prefix}% &aSuccessfully set &4Red’s &atorch!”
+                      else if {game.red.torch) is not set:
+                      	send “%{prefix}% &cFailed to set &4Red’s &atorch.”
+
+
+command /tcsetlobby:
+	permission: tc.setlobby
+	usage: /tclobby
+	trigger:
+		set {game.lobby} to location of player
+                      wait 10 ticks
+                      if {game.lobby} is set:
+                      	send “%{prefix}% &aSuccessfully set the game’s lobby!”
+                      else if {game.lobby) is not set:
+                      	send “%{prefix}% &cFailed to set the game’s lobby.”
+
+command /tcsetspawn1:
+	permission: tc.setspawn.1
+	usage: /tcspawn
+	trigger:
+		set {game.blue.spawnLoc} to location of player
+                      wait 10 ticks
+                      if {game.blue} is set:
+                      	send “%{prefix}% &aSuccessfully set &9Blue’s &aplayer spawn location!”
+                      else if {game.blue) is not set:
+                      	send “%{prefix}% &cFailed to set &9Blue’s &aplayer spawn location.”
+			
+command /tcsetspawn2:
+	permission: tc.setspawn.2
+	usage: /tcspawn
+	trigger:
+		set {game.red.spawnLoc} to location of player
+                      wait 10 ticks
+                      if {game.red} is set:
+                      	send “%{prefix}% &aSuccessfully set &4Red’s &aplayer spawn location!”
+                      else if {game.red) is not set:
+                      	send “%{prefix}% &cFailed to set &4Red’s &aplayer spawn location.”
+
+command /tcinfo:
+    permission: tc.info
+    usage: /tcinfo
+    trigger:
+        send "---------------------------------------"
+        send "Game Lobby Location: %{game.lobby}%"
+        send "Red's Spawn Location: %{game.red.spawnLoc}%"
+        send "Red's Torch Location: %{game.red.torch}%"
+        send "Blue's Spawn Location: %{game.blue.spawnLoc}%"
+        send "Blue's Torch Location: %{game.blue.torch}%"
+        send "---------------------------------------"
+
+command /tcjoin:
+	permission: tc.join
+	usage: /tcjoin
+	trigger:
+		# SOON!
+
+#Events
+on join:
+	if player has permission "tc.joinmessage.unknown":
+        set {game.isinGame} to 0
+		broadcast "%{prefix}%  &f&m%name of player% is currently not in a game!"
+
+#COMING SOON!
+
+#Maps (Requires WorldGuard)

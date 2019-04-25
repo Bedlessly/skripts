@@ -1,0 +1,18 @@
+command /dm [<player>] [<text>]:
+	aliases: /dm, /message, /r, /reply, /directmessage
+	permission: dm.message
+	permission message: &l&cSorry, you cannot do that!
+	usage: /dm (player) (message)
+	description: &eMessage your friends or neighbors secretly!
+	trigger:
+		if player-argument is not set:
+			if arg-2 is not set:
+				send "&7/dm (player) (message)"
+			else if arg-2 is set:
+				send "&7/dm (player) (message)"
+		else if player-argument is set:
+			if arg-2 is not set:
+				send "&7/dm (player) (message)"
+			else if arg-2 is set:
+				send "&b(%player-argument%) < (%name of player%) &7: %arg-2%"
+				send "&b(%player-argument%) < (%name of player%) &7: %arg-2%" to player-argumentYouve 

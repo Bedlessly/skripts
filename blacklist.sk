@@ -1,0 +1,49 @@
+command /blacklist [<player>] [<text>]:
+	permission: blacklist.player
+	permission message: &cYOUR PERMISSION MESSAGE GOES HERE!
+	usage: /blacklist (player) (reason)
+	trigger:
+		if arg-1 is set:
+			if arg-2 is set:
+				set {blacklist::%arg-1%} to true
+				set {blmessage::%arg-1%} to arg-2
+				send "Blacklisted %arg-1% for "%arg-2%"! "
+				kick arg-1 due to "You have been blacklisted! %nL%Reason: %arg-2%"
+			else:
+				set {blacklist::%arg-1%} to true
+				send "Blacklisted %arg-1%!"
+				kick arg-1 due to "&7&lYou have been blacklisted! %nL%&7&lReason: Blacklisted"
+		else:
+			if arg-2 is set:
+				send "&cPlease Specify a Player!"
+			else:
+				send "&cIncorrect Usage!"
+
+command /deblacklist [<player>]:
+	permission: deblacklist.player
+	permission message: &cYOUR PERMISSION MESSAGE GOES HERE!
+	usage: /deblacklist (player)
+	trigger:
+		if arg-1 is set:
+			if {blacklist::%arg-1%} is true:
+				set {blacklist::%arg-1%} to false
+				send "&aDeblacklisted %arg-1%!"
+			else if {blacklist::%arg-1%} is false:
+				send "&a%arg-1% is not blacklisted!"
+		else if arg-1 is not set:
+			send "&cIncorrect Usage!"
+
+on join:
+	if {blacklist::%player%} is true:
+		if {blmessage::%player%} is set:
+			kick player due to "You have been blacklisted! %nL%Reason: %{blmessage::%player%}%"
+			set join message to ""
+		else if {blmessage::%player%} is not set:
+			kick player due to "&7&lYou have been blacklisted! %nL%&7&lReason: Blacklisted"
+			set join message to ""
+	else if {blacklist::%player%} is false:
+		stop
+
+on first join:
+		set {blacklist::%player%} to false
+

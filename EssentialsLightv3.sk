@@ -1,0 +1,63 @@
+command /gmc [<player>]:
+	permission: essentialslight.gamemode.creative
+	trigger:
+		if player is op:
+			execute console command "/gamemode creative %player%"
+		else if player is not op:
+			message "&cNo Permissions!"
+
+command /gms [<player>]:
+	permission: essentialslight.gamemode.survival
+	trigger:
+		if player is op:
+			execute console command "/gamemode survival %player%"
+		else if player is not op:
+			message "&cNo Permissions!"
+
+command /gmsp [<player>]:
+	permission: essentialslight.gamemode.spectator
+	trigger:
+		if player is op:
+			execute console command "/gamemode spectator %player%"
+		else if player is not op:
+			message "&cNo Permissions!"
+
+command /gma [<player>]:
+	permission: essentialslight.gamemode.adventure
+	trigger:
+		if player is op:
+			execute console command "/gamemode adventure %player%"
+		else if player is not op:
+			message "&cNo Permissions!"
+
+
+
+command /night:
+	permission: essentialslight.night
+	trigger:
+		execute console command "/time night"
+
+
+command /day:
+	permission: essentialslight.day
+	trigger:
+		execute console command "/time day"
+
+
+command /essentialslight:
+	permission: essentialslight.helo
+	trigger:
+		send "&7&m--------------------"
+		send "&bWelcome to EssentialsLight!"
+		send "&bCreated by IsCelticYT"
+		send "&bVersion: 3.0"
+		send "&7&m-------------------"
+		send "&eCommands:"
+		send "&e/night"
+		send "&e/day"
+		send "&e/gma"
+		send "&e/gmc"
+		send "&e/gms"
+		send "&e/gmsp"
+		send "&e/essentialslight"
+		send "&7&m--------------------"

@@ -1,0 +1,6 @@
+command /chatclear:
+    trigger:
+        loop 100 times:
+            broadcast ""
+       wait 100 ticks
+       send "&cChat cleared by %player%!"

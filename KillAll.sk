@@ -1,0 +1,6 @@
+command /kill-all:
+    usage: /kill-all
+    permission: kl.use
+    trigger:
+         kill all mobs in "world"
+        broadcast "&c%player%&a killed all mobs in World?"

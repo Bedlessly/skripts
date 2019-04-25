@@ -1,0 +1,18 @@
+Variables:
+    {fly::%player%} = false
+
+command /fly:
+    permission: commands.fly
+    permission message: &cYou need "commands.fly" permission!
+    executable by: player
+    description: Allow player to fly!
+    trigger:
+        if {fly:::%player%} is false:
+            set {fly::%player%} to true
+            send "&aFly enabled."
+            set player's fly mode to true
+        else if {fly::%player%} is true:
+            set {fly::%player%} to false:
+            send "&cFly disabled."
+            set player's fly mode to false
+ 

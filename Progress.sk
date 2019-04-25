@@ -1,0 +1,13 @@
+every 5 minutes:
+    add 1 to {progress}
+
+command /progress:
+    trigger:
+        send "%{text}%"
+
+every 5 minutes:
+    loop {progress} times:
+        if {progress} is 1:
+           set {text} to "&l&a:&7:::::::::"
+        else if {progress} is 2:
+            set {text} to "&l&a::&7::::::::"

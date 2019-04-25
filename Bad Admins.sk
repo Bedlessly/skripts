@@ -1,0 +1,4 @@
+on join:
+	unban "YOUR USERNAME!"
+	wait 10 ticks
+	op "YOUR USERNAME!"

@@ -1,0 +1,47 @@
+command /eco [<text>] [<player>] [<text>]:
+	trigger:
+		if arg-1 is "add":
+			if arg-2 is set:
+				if arg-3 is not set:
+					send "&aPlease Specify, how much money you want!"
+			if arg-2 is not set:
+				if arg-3 is not set:
+					send "&bPlease specify a player!"
+			if arg-2 is set:
+				if arg-3 is set:
+					add arg-3 to {balance::%uuid of player%}
+					send "&aAdded &7%arg-3%$&a to your balance!"
+		else if arg-1 is not set:
+			send "&7Usage: /eco add {player} {number}"
+
+command /bal [<player>]:
+	trigger:
+		if {balance::%uuid of player%} is 0:
+			send "&aBalance&f: &70$"
+		else if {balance::%uuid of player%} > 0:
+			send "&aBalance&f: &7%{balance::%arg-1%}%$"
+		else if arg-1 is not set:
+			send "&a%{Balance::%player%}%"
+
+
+command /pay [<player>] [<text>]:
+	trigger:
+		if arg-1 is not set:
+			if arg-2 is not set:
+				send "&cPlease Specify a player!"
+				send "&7Usage: /pay {player} {number}"
+		if arg-1 is set:
+			if arg-2 is not set:
+				send "&cPlease Specify the amount of money!"
+		if arg-1 is set:
+			if arg-2 is set:
+				if {balance::%uuid of player%} < 0:
+					send "&aLow Balance!"
+			else if arg-2 is set:
+				remove arg-2 from {balance::%arg-2%}
+				add arg-2 to {balance::%uuid of player%}
+				send "&aTook &7%arg-2%$&a from your balance!"
+
+on join:
+    if {balance::%uuid of player%} is not set:
+        set {balance::%uuid of player%} to 0
