@@ -1,13 +1,36 @@
 every 5 minutes:
-    add 1 to {progress}
+    if {progress} is 10:
+        send "Progress Maxed Out! Resetting..."
+        set {progress} to 0
+        wait 20 ticks
+        send "Progress bar reset!"
+        send "&l&7::::::::::"
+    else:
+        add 1 to {progress}
+    loop {progress} times:
+        if {progress} is 0:
+            set {text} to "&l&7::::::::::"
+        else if {progress} is 1:
+            set {text} to "&l&a:&7:::::::::"
+        else if {progress} is 2:
+            set {text} to "&l&a::&7::::::::"
+        else if {progress} is 3:
+            set {text} to "&l&a:::&7:::::::"
+        else if {progress} is 4:
+            set {text} to "&l&a::::&7::::::"
+        else if {progress} is 5:
+            set {text} to "&l&a:::::&7:::::"
+        else if {progress} is 6:
+            set {text} to "&l&a::::::&7::::"
+        else if {progress} is 7:
+            set {text} to "&l&a::&7::::::::"
+        else if {progress} is 8:
+            set {text} to "&l&a::&7::::::::"
+        else if {progress} is 9:
+            set {text} to "&l&a::&7::::::::"
+        else if {progress} is 10:
+            set {text} to "&l&a::&7::::::::"
 
 command /progress:
     trigger:
         send "%{text}%"
-
-every 5 minutes:
-    loop {progress} times:
-        if {progress} is 1:
-           set {text} to "&l&a:&7:::::::::"
-        else if {progress} is 2:
-            set {text} to "&l&a::&7::::::::"
