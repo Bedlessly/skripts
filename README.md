@@ -8,6 +8,6 @@ There will also be some games too! When someone submits there skript, I'll revie
 
 Occasionally I will come on just to update, add, review, or remove skripts incase I find out they stole the skript and didnt ask permission to share it and claim it as yours!
 
-To Request your skript just clone the repository and add your skript file to the cloned repository, after make a pull request and tell me why you want your skript added.
+To request your skript to be added, just clone the repository and add your skript file to the cloned repository, after that make a pull request and tell me why you want your skript added.
 --------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------
