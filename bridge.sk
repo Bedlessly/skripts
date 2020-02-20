@@ -1,0 +1,47 @@
+# Created By Zenyiar
+# Copyright 2020
+
+options:
+    prefix: "&b&l[&r&aBridge&b&l]&r "
+
+on first join:
+    set {bridge.%player%.started} to false
+
+on disconnect:
+    set {bridge.%player%.started} to false
+
+on command:
+    if {bridge.%player%.started} is true:
+        message "{@prefix} &cYou cannot run commands while bridge has started!"
+        cancel event
+
+command /bridge [<text>]:
+    permission: "zenyiarskripts.bridge.bridge"
+    usage: /bridge [<text>]
+    trigger:
+        if arg-1 is not set:
+            message "&e------= &3Help & Info &e=------"
+            message "&a/brige"
+            message "&a/brige &bstart"
+            message "&a/brige &bend"
+            message "&e---------------------------"
+        if arg-1 is set:
+            if arg-1 is "start":
+                if {bridge.%player%.started} is true:
+                    message "{@prefix} &aBridge has already started!"
+                else if {bridge.%player%.started} is false:
+                    set {bridge.%player%.started} to true
+                    broadcast "{@prefix} &a%player% has started the bridge!"
+                    message "{@prefix} &aBridge has started!"
+            else if arg-1 is "end":
+                if {bridge.%player%.started} is false:
+                    message "{@prefix} &cBridge hasn't started yet!"
+                else if {bridge.%player%.started} is true:
+                    set {bridge.%player%.started} to false
+                    broadcast "{@prefix} &a%player% has finished the bridge!"
+                    message "{@prefix} &aYou finished the bridge!"
+            else if arg-1 is "about":
+            	message "&e---------= &3About &e=---------"
+            	message "&bCreated by Zenyiar"
+            	message "&bCopyright 2020"
+            	message "&e---------------------------"
