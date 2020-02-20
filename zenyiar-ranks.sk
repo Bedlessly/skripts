@@ -1,0 +1,90 @@
+# ----------------------------------
+# Created by: Zenyiar
+# Version: 1.1.1
+# Copyrigted 2020
+# ----------------------------------
+
+on first join:
+    set {prefix.%player's uuid%} to "&7&lMember"
+
+on join:
+    if {prefix.%player's uuid%} is not set:
+        set {prefix.%player's uuid%} to "&7&lMember"
+
+command /ranks [<text>] [<offline player>] [<text>]:
+    permission: ranks.commands.ranks
+    permission message: &cYou cannot do this!
+    trigger:
+        if arg-1 is not set:
+            send "&7&l&m----------------------------------"
+            send "&bPlease specify a task to peform!"
+            send "&b=> (set, custom, list, info)"
+            send "&7&l&m----------------------------------"
+        else if arg-1 is "list":
+            send "&7&l&m----------------------------------"
+            send "&cRanks:"
+            send "&aOwner"
+            send "&aCo-Owner"
+            send "&aAdmin"
+            send "&aModerator"
+            send "&aDefault"
+            send "&7&l&m----------------------------------"
+        else if arg-1 is "info":
+            send "&7&l&m----------------------------------"
+            send "&a&lCreated by: &cZenyiar"
+            send "&a&lVersion: &c1.1"
+            send "&a&lCopyrigted 2019"
+            send "&7&l&m----------------------------------"
+        else if arg-1 is not "set" or "custom" or "list" or "info":
+            send "&7&l&m----------------------------------"
+            send "&cSorry, I could not find that command!"
+            send "&bUsage => /ranks (set, custom, list, info) <player> <rank>"
+            send "&7&l&m----------------------------------"
+        else if arg-2 is not set:
+            send "&7&l&m----------------------------------"
+            send "&cSorry, I could not find that player!"
+            send "&bUsage => /ranks (set, custom, list, info) <player> <rank>"
+            send "&7&l&m----------------------------------"
+        else if arg-3 is not set:
+            if arg-1 is "set":
+                send "&7&l&m----------------------------------"
+                send "&bPlease specify a rank to give!!"
+                send "&7&l&m----------------------------------"
+                send "&cRanks:"
+                send "&aOwner"
+                send "&aCo-Owner"
+                send "&aAdmin"
+                send "&aModerator"
+                send "&aMember"
+                send "&7&l&m----------------------------------"
+            else:
+                send "&7&l&m----------------------------------" 
+                send "&cPlease choose a custom prefix!"
+                send "&bUsage => /ranks (set, custom, list, info) <player> <rank>"
+                send "&7&l&m----------------------------------" 
+        else if arg-1 is "set":
+            if arg-3 is "Member":
+                set {prefix.%arg-2's uuid%} to "&7&lMember"
+                send "&7(Ranks) Set %arg-2%'s rank to &7&lMember&r&7!"
+            else if arg-3 is "Owner":
+                set {prefix.%arg-2's uuid%} to "&a&lOwner"
+                send "&7(Ranks) Set %arg-2%'s rank to &a&lOwner&r&7!"
+            if arg-3 is "Co-Owner":
+                set {prefix.%arg-2's uuid%} to "&6&lCo-Owner"
+                send "&7(Ranks) Set %arg-2%'s rank to &6&lCo-Owner&r&7!"
+            else if arg-3 is "Admin":
+                set {prefix.%arg-2's uuid%} to "&c&lAdmin"
+                send "&7(Ranks) Set %arg-2%'s rank to &c&lAdmin&r&7!"
+            else if arg-3 is "Moderator" or "Mod":
+                set {prefix.%arg-2's uuid%} to "&1&lModerator"
+                send "&7(Ranks) Set %arg-2%'s rank to &1&lModerator&r&7!"
+            else if arg-3 is not "Moderator" or "Mod" or "Admin" or "Co-Owner" or "Member" or "Owner":
+                send "&7&l&m----------------------------------"
+                send "&cSorry, I could not find the rank &l`%arg-3%`"
+                send "&7&l&m----------------------------------"
+        else if arg-1 is "custom":
+            set {prefix.%arg-2's uuid%} to arg-3
+            send "&7(Ranks) Successfully set your custom prefix to &l`%colored arg-3%&r&7&l`"
+
+on chat:
+    set chat format to "%colored {prefix.%player's uuid%}% %player% &7&l»&r %message%"
