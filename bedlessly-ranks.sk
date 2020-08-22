@@ -1,5 +1,5 @@
 # ----------------------------------
-# Created by: Zenyiar
+# Created by: Bedlessly
 # Version: 1.1.1
 # Copyrigted 2020
 # ----------------------------------
@@ -31,9 +31,9 @@ command /ranks [<text>] [<offline player>] [<text>]:
             send "&7&l&m----------------------------------"
         else if arg-1 is "info":
             send "&7&l&m----------------------------------"
-            send "&a&lCreated by: &cZenyiar"
+            send "&a&lCreated by: &cBedlessly"
             send "&a&lVersion: &c1.1"
-            send "&a&lCopyrigted 2019"
+            send "&a&lCopyrigted 2020"
             send "&7&l&m----------------------------------"
         else if arg-1 is not "set" or "custom" or "list" or "info":
             send "&7&l&m----------------------------------"
